@@ -7,6 +7,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/**
+ * 
+ * L'entity Adresse est un composant de l'entity Utilisateur
+ * Elle est indepenant mais reutilisable donc elle porte l'annontation @Embeddable
+ * 
+ * @author Jean ANDRIANARISON
+ * 
+ */
 @Embeddable
 public class Adresse {
 
@@ -82,6 +90,12 @@ public class Adresse {
 	 */
 	public void setVille(String ville) {
 		this.ville = ville;
+	}
+
+
+	@Override
+	public String toString() {
+		return "Adresse [rue=" + rue + ", codePostal=" + codePostal + ", ville=" + ville + "]";
 	}
 	
 	

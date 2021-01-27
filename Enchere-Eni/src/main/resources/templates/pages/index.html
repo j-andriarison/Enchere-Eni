@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="fr" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" class="h-100">
+	<head th:replace="includes/template.html :: head">
+	</head>
+	<body class="d-flex flex-column h-100">
+		<header th:replace="includes/template.html :: header"></header>
+		
+		<!-- Begin page content -->
+		<main class="container flex-grow-1 pt-2 mt-5">
+					  
+			<!--  Form -->
+			<div class="filtres_et_recherche ">
+				<form action="#" method="GET">
+					<fieldset>
+				  		<div class="row gx-0 align-items-center">
+					  		<legend>Filtres : </legend>
+						    <div class="filtres-inputs d-flex flex-column col-lg-6">
+								 	<div class="form-group my-2 row gx-0 order-lg-2 ">
+								 		<div class="col-3">
+								  				<label for="categories_select">Catégories</label>
+								 		</div>
+								 		<div class="col-9">
+								 			<div>
+											  	<select name="categories_select" id="categories_select" class="form-select" aria-label="Default select example">
+												  <option selected>Toutes</option>
+												  <option value="1">One</option>
+												  <option value="2">Two</option>
+												  <option value="3">Three</option>
+												</select>
+											</div>
+										</div>
+									</div>
+								 	<div class="form-group my-2 order-lg-1">					
+										<div class="input-group mb-3">
+										  <span class="input-group-text bg-transparent border-end-0" id="basic-addon1"><i class="fas fa-search"></i></span>
+										  <input class="form-control border-start-0 pl-0" type="search" id="article-search" name="article-search" placeholder="Le nom de l'article contient" aria-label="Recherche d'un article">
+										</div>					
+								 	</div>
+							</div>
+							<div class="gx-0 text-center d-grid d-lg-block col-lg-6 px-5">
+								<button type="submit" class="btn btn-primary w-100 p-4 my-3">Rechercher</button>
+							</div>
+					  	</div>
+					</fieldset>
+				</form>
+			</div>
+			<div class="row gx-0 mt-4">
+				<div class="encheres_en_cours col-12 col-lg-6">
+
+					<!--  Articles -->
+					
+					<div class="card px-2">
+						<div class="row align-items-center">
+						    <div class="col-4">
+						      <img class="img-fluid img-thumbnail" src="https://via.placeholder.com/150/FFFF00/000000?Text=WebsiteBuilders.com" alt="...">
+						    </div>
+						    <div class="col-8">
+							    <div class="card-body">
+							      <h5 class="card-title">Card title</h5>
+							      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+							      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+							    </div>
+						  	</div>
+						</div>
+					</div>
+			
+					<!-- / Articles -->
+					
+				</div>
+			</div>
+		 </main>
+	  <div th:replace="includes/template.html :: footer">  </div>
+	</body>
+</html>

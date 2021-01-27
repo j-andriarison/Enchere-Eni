@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="fr" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" class="h-100">
+	<head th:replace="includes/template.html :: head">
+	</head>
+	<body class="d-flex flex-column h-100">
+		<header th:replace="includes/template.html :: header"></header>
+		
+		<!-- Begin page content -->
+		<main class="container flex-grow-1 d-flex flex-column justify-content-center my-4 pt-3">
+			<form action="#" method="post">	  
+				<div class="row ">
+					<div class="col-lg-4 d-none d-lg-block">
+						<img class="img-fluid img-thumbnail" src="https://via.placeholder.com/250/FFFF00/000000?Text=WebsiteBuilders.com" alt="...">
+					</div>
+					<div class="col-lg-8">
+						<!--  Nom du produit -->
+						
+						<div class="row">
+							<div class="col-4">
+								<label for="nomArticle" class="form-label">Article :</label>
+							</div>
+							<div class="col-8 mb-2">
+								<input class="form-control" id="nomArticle" name="nomArticle" type="text" placeholder="Nom de l'article" />
+							</div>
+							<div class="col-4">
+								<!--  Catégorie -->
+								<label for="nomArticle" class="form-label">Catégorie :</label>
+							</div>
+							<div class="col-8 mb-2">
+								<select class="form-select" aria-label="Default select example">
+								  <option selected>Open this select menu</option>
+								  <option value="1">One</option>
+								  <option value="2">Two</option>
+								  <option value="3">Three</option>
+								</select>
+							</div>
+							
+							<div class="col-4">
+								<label for="description" class="form-label">Description :</label>
+							</div>
+							<div class="col-8 mb-2 pb-2 form-control">
+								<div class="form-floating">
+								  <textarea class="form-control" placeholder="" id="description"></textarea>
+								  <label for="description">Uploader</label>
+								</div>
+							</div>
+							
+							<div class="col-4">
+								<!--  Meilleure offre -->
+								<label >Photo de l'article :</label>
+							</div>
+							<div class="col-8 mb-2">
+							  <input class="form-control" type="file" id="formFile" placeholder="Uploader">
+							</div>
+							<div class="col-12 d-lg-none py-3 text-center">
+								<img class="img-fluid img-thumbnail" src="https://via.placeholder.com/250/FFFF00/000000?Text=WebsiteBuilders.com" alt="...">
+							</div>
+							<div class="col-4">
+								<!--  Mise à prix -->
+								Mise à prix
+							</div>
+							<div class="col-8 mb-2">
+								<input  class="form-control" type="number" />
+							</div>
+							<div class="col-4">
+								<!--  Fin de l'enchère -->
+								<p>Fin de l'enchère : </p>
+							</div>
+							<div class="col-8 mb-2">
+								<input class="form-control" type="date" />
+							</div>
+							<div class="col-4">
+								<!--  Retrait -->
+								<p>Retrait : </p>
+							</div>
+							<div class="col-8 mb-2">
+								10 allée des alouettes<br/>
+								44230 ST HBB
+							</div>
+							<div class="col-4">
+								<!--  Vendeur -->
+								<p>Vendeur : </p>
+							</div>
+							<div class="col-8 mb-2">
+								jojo44
+							</div>
+							<div class="d-flex align-items-center">
+								<div class="col-4">
+									<!--  Proposition -->
+									<p>Ma proposition : </p>
+								</div>
+								<div class="col-3 ps-2 pe-3">
+									<form>
+										<input class="form-control" type="number" name="" id="" />
+									</form>
+								</div>
+								<div class="col-4">
+									<input class="btn btn-primary py-3 " value="Enchérir" />
+								</div>						
+							</div>
+						</div>
+					</div>
+				</div>
+			</form>
+		 </main>
+	  <div th:replace="includes/template.html :: footer">  </div>
+	</body>
+</html>

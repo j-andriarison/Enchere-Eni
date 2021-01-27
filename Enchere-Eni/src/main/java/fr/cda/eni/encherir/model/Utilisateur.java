@@ -196,6 +196,13 @@ public class Utilisateur {
 		this.isAdministrateur = isAdministrateur;
 	}
 
+	@Override
+	public String toString() {
+		return "Utilisateur [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", email=" + email + ", pseudo="
+				+ pseudo + ", motDePasse=" + motDePasse + ", adresse=" + adresse + ", telephone=" + telephone
+				+ ", credit=" + credit + ", isAdministrateur=" + isAdministrateur + "]";
+	}
+
 	
 	
 	
