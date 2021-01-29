@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr" xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org" class="h-100">
-<head th:replace="includes/template.html :: head">
-
-</head>
+<head th:replace="includes/template.html :: head"></head>
 
 <body class="d-flex flex-column h-100">
 	<header th:replace="includes/template.html :: header"></header>
@@ -12,79 +10,94 @@
 
 		<h1 class="text-center ">Créer un compte</h1>
 		<form action="#" th:action="@{/signin}" method="post"
-			th:object="${utilisateur}">
+			th:object="${utilisateur}" id="inscription">
 			<!-- 2 column grid layout with text inputs for the first and last names -->
 			<div class="row mb-4 justify-content-around">
 				<div class="col-12 col-lg-5">
 
 					<h3>Info de connexion</h3>
 					<div class="form-group">
-						<label class="form-label" for="pseudo">Pseudo</label> 
-						<input type="text" id="pseudo" name="pseudo" class="form-control" placeholder="Pseudo" />
+						<label class="form-label" for="pseudo">Pseudo</label> <input
+							type="text" id="pseudo" name="pseudo" class="form-control"
+							placeholder="Pseudo" />
 					</div>
 
 					<!-- Email input -->
 					<div class="form-group">
-						<label class="form-label" for="mail">Email</label> 
-						<input type="email" id="email" name="email" class="form-control" placeholder="Email" />
+						<label class="form-label" for="mail">Email</label> <input
+							type="email" id="email" name="email" class="form-control"
+							placeholder="Email" />
 					</div>
 					<!-- Password input -->
 					<div class="form-group">
-						<label class="form-label" for="password">Mot de passe</label>
-						<input type="password" id="motDePasse" name="motDePasse" class="form-control" /> 
+						<label class="form-label" for="password">Mot de passe</label> <input
+							type="password" id="motDePasse" name="motDePasse"
+							class="form-control" />
 					</div>
 					<!-- Verif Password -->
-					<div class="form-group"> 
+					<div class="form-group">
 						<label class="form-label" for="verif_password">Confirmation</label>
-						<input type="password" id="verif_password" name="verif_password" class="form-control" />
+						<input type="password" id="verif_password" name="verif_password"
+							class="form-control" />
 					</div>
+					<span id='message'></span>
 				</div>
 				<div class="col-12 col-lg-5">
 					<h3>Profile</h3>
 					<div class="form-group">
-						<label class="form-label" for="nom">Nom</label>
-						<input type="text" id="nom" name="nom" class="form-control" placeholder="Nom" /> 
-					</div> 
+						<label class="form-label" for="nom">Nom</label> <input type="text"
+							id="nom" name="nom" class="form-control" placeholder="Nom" />
+					</div>
 					<div class="form-group">
-						<label class="form-label" for="prenom">Prénom</label>
-						<input type="text" id="prenom" name="prenom" class="form-control" placeholder="Prénom" />
-					</div> 
+						<label class="form-label" for="prenom">Prénom</label> <input
+							type="text" id="prenom" name="prenom" class="form-control"
+							placeholder="Prénom" />
+					</div>
 					<!-- Phone input -->
 					<div class="form-group">
-						<label class="form-label" for="phone">Téléphone</label>
-						<input type="text" id="telephone" name="telephone" class="form-control" placeholder="Téléphone" />
-					</div>  
+						<label class="form-label" for="phone">Téléphone</label> <input
+							type="text" id="telephone" name="telephone" class="form-control"
+							placeholder="Téléphone" />
+					</div>
 					<h3>Adresse</h3>
 					<!-- Rue input -->
 					<div class="form-group">
-						<label class="form-label" for="rue">Rue</label>
-						<input type="text" id="rue" name="rue" class="form-control" placeholder="numero et nom de la rue" />
+						<label class="form-label" for="rue">Rue</label> <input type="text"
+							id="rue" name="rue" class="form-control"
+							placeholder="numero et nom de la rue" />
 					</div>
 					<!-- Code Postal input -->
 					<div class="form-group">
-						<label class="form-label" for="codePostal">Code postal</label>
-						<input type="text" id="codePostal" name="codePostal" class="form-control" placeholder="09000" /> 
-					</div> 
+						<label class="form-label" for="codePostal">Code postal</label> <input
+							type="text" id="codePostal" name="codePostal"
+							class="form-control" placeholder="09000" />
+					</div>
 					<!-- Ville -->
 					<div class="form-group">
-						<label class="form-label" for="ville">Ville</label>
-						<input type="text" id="ville" name="ville" class="form-control" placeholder="ville" />
+						<label class="form-label" for="ville">Ville</label> <input
+							type="text" id="ville" name="ville" class="form-control"
+							placeholder="ville" />
 					</div>
-			</div>
-			<div class="row justify-content-center mt-5">
-				<div class="col-12 col-lg-5">
-					<!-- Submit button -->
-					<button type="submit" class="btn btn-primary w-100">Créer</button>
 				</div>
-				<div class="col-12 col-lg-5">
-					<!-- Submit button -->
-					<button type="submit" class="btn btn-primary w-100">Annuler</button>
+				<div class="row justify-content-center mt-5">
+					<div class="col-12 col-lg-5">
+						<!-- Submit button -->
+						<button type="submit" id="btnEnregistrer"  class="btn btn-primary w-100">Créer mon compte</button>
+					</div>
+					<div class="col-12 col-lg-5">
+					<input type="hidden" name="id" value="">
+						<!-- Submit button -->
+						<button type="submit" class="btn btn-primary w-100">Annuler</button>
+					</div>
 				</div>
-			</div>
 		</form>
 
 
 	</main>
 	<div th:replace="includes/template.html :: footer"></div>
+	
+		<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.0/jquery.validate.min.js"></script>
+    	<script type="text/javascript" th:src="@{/js/ValidationFormScript.js}" ></script>
+	
 </body>
 </html>

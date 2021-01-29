@@ -1,15 +1,9 @@
 package fr.cda.eni.encherir.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-
-import fr.cda.eni.encherir.dal.UtilisateurRepository;
-import fr.cda.eni.encherir.model.Adresse;
-import fr.cda.eni.encherir.model.Utilisateur;
 
 @Controller
 public class PagesController 
@@ -17,12 +11,14 @@ public class PagesController
 	
 	
 	@GetMapping("/home") 
-	public String home() {
+	public String home(HttpServletRequest request) {
+		
 		return "pages/index";
 	}
 	
 	@GetMapping("/accueil") 
-	public String accueil() {
+	public String accueil(HttpServletRequest request) {
+		
 		return "pages/index_connecte";
 	}
 	@GetMapping("/vente") 

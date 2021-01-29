@@ -1,11 +1,17 @@
 package fr.cda.eni.encherir.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.view.RedirectView;
 
 import fr.cda.eni.encherir.dal.UtilisateurRepository;
 import fr.cda.eni.encherir.model.Adresse;
@@ -23,19 +29,24 @@ public class SecurityController {
 	public String login() {
 		return "pages/login";
 	}
+	
+	@PostMapping("/login") 
+	public String login(@RequestParam String loginOrEmail, @RequestParam String password) {
+		Utilisateur utilisateurConnecte = utilisateurRepository.findByLoginOrEmail(loginOrEmail, loginOrEmail);
+		
+		System.out.println(utilisateurConnecte);
+		return "pages/login";
+	}
 	@GetMapping("/signin") 
 	public String signin() {
 		return "pages/signin";
 	}
 
 	@PostMapping("/signin") 
-	public String signin(@ModelAttribute("utilisateur") Utilisateur utilisateur, 
+	public RedirectView signin(@ModelAttribute("utilisateur") Utilisateur utilisateur, 
 			@RequestParam String rue,
 			@RequestParam Integer codePostal,
-			@RequestParam String ville) {
-		System.out.println(utilisateur);
-		
-		
+			@RequestParam String ville, HttpServletRequest request) {
 
 		Adresse adresse = new Adresse(rue, codePostal, ville);
 		// on rattache l'adresse a 'lutilisateur
@@ -48,9 +59,17 @@ public class SecurityController {
 		utilisateur.setCredit(0);
 		
 		// enregistrement dans la table en passant par le repository
-		utilisateurRepository.save(utilisateur);
+		Utilisateur userCreated = utilisateurRepository.save(utilisateur);
 		
+
+		request.getSession().setAttribute("utilisateurConnecte", userCreated.getId());
 		
-		return "pages/signin";
+        return new RedirectView("home");
+
+	}
+	@GetMapping("/logout")
+	public String destroySession(HttpServletRequest request) {
+		request.getSession().invalidate();
+		return "pages/index";
 	}
 }

@@ -5,58 +5,79 @@ stylesheets (Bootstrap, FontAwesome)
 header (Navbar)
 footer (Copyright...)
  -->
- <!doctype html>
+<!doctype html>
 <html lang="fr" xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org" class="h-100">
-	<head th:fragment="head">
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta name="generator" content="Hugo 0.79.0">
-		
-		<title>EniEncheres</title>
-		
-		<!-- Bootstrap core CSS -->
-		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
-		<!-- Favicons -->
-		<script src="https://kit.fontawesome.com/96486db8a9.js" crossorigin="anonymous"></script>
-	</head>
-	<body>
+	xmlns:th="http://www.thymeleaf.org" class="h-100">
+<head th:fragment="head">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="Hugo 0.79.0">
+
+<title>EniEncheres</title>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+	integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs="
+	crossorigin="anonymous"></script>
+<!-- Bootstrap core CSS -->
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
+	crossorigin="anonymous">
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+	crossorigin="anonymous"></script>
+<!-- Favicons -->
+<script src="https://kit.fontawesome.com/96486db8a9.js"
+	crossorigin="anonymous"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+</head>
+<body>
 	<header class="pt-5" th:fragment="header">
-		<!--  header fragment -->	
-		 <!-- Fixed navbar -->
-	 	<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-	    <div class="container-fluid">
-	      <a class="navbar-brand" href="/">EniEncheres</a>
-	      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-	        <span class="navbar-toggler-icon"></span>
-	      </button>
-	      <div class="collapse navbar-collapse" id="navbarCollapse">
-	        <ul class="navbar-nav me-auto mb-2 mb-md-0">
-	          <li class="nav-item ">
-	          </li>
-	        </ul>
-	        <div>
-   	        <ul class="navbar-nav ms-auto mb-2 mb-md-0">
-		       <li class="nav-item ">
-			    <a class="nav-link" href="signin">S'inscrire</a>
-  	          </li>
-  	          <li class="nav-item ">
-	          	<a class="nav-link" href="login">Se connecter</a>
-	          </li>
-		    </ul>
-	        </div>
-	      </div>
-	    </div>
-	  </nav>
+		<!--  header fragment -->
+		<!-- Fixed navbar -->
+		<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+			<div class="container-fluid">
+				<a class="navbar-brand" href="/">EniEncheres</a>
+
+				<button class="navbar-toggler" type="button"
+					data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+					aria-controls="navbarCollapse" aria-expanded="false"
+					aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarCollapse">
+					<ul class="navbar-nav me-auto mb-2 mb-md-0">
+						<li class="nav-item "></li>
+					</ul>
+
+					<ul th:if="${session.utilisateurConnecte}" class="navbar-nav ms-auto mb-2 mb-md-0">
+						<li class="nav-item "><a class="nav-link" href="#">Enchere</a></li>
+						<li class="nav-item "><a class="nav-link" href="#">Vendre un article</a></li>
+						<li class="nav-item "><a class="nav-link" href="">Mon profile</a></li>
+						<li class="nav-item "><a class="nav-link" href="/logout">Deconnexion</a></li>
+					</ul>
+					
+					<ul th:if="${session.utilisateurConnecte == null }" class="navbar-nav ms-auto mb-2 mb-md-0">
+					<li class="nav-item "><a class="nav-link" href="signin">S'inscrire</a>
+						</li>
+						<li class="nav-item "><a class="nav-link" href="login">Se
+								connecter</a></li>
+					</ul>
+				</div>
+			</div>
+			</div>
+		</nav>
 	</header>
-	
-	
-	<footer th:fragment="footer" class="footer mt-auto py-3 bg-light d-none d-sm-block">
-	<!--  footer fragment -->
+
+
+	<footer th:fragment="footer"
+		class="footer mt-auto py-3 bg-light d-none d-sm-block">
+		<!--  footer fragment -->
 		<div class="container text-center">
-		  <span class="text-muted ">Copyright &copy; 2021 👨🏾 👨🏾 </span>
+			<span class="text-muted ">Copyright &copy; 2021 👨🏾 👨🏾 </span>
 		</div>
 	</footer>
-	</body>
-	</html>
+</body>
+</html>
