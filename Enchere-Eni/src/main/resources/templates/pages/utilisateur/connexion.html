@@ -9,21 +9,23 @@
 	<header th:replace="includes/template.html :: header"></header>
 	<main class="container flex-grow-1 d-flex flex-column justify-content-around">
 		
-		
-		<form action="" method="">
+		<span th:text="${messageErreurConnexion}"></span>
+		<span th:text="${messageErreurInscription}"></span>
+		<span th:text="${messageInvitationConnexion}"></span>
+		<form action="/connexion" method="post" >
 			<div class="form-group">
 				<div class="mb-3 row">
-				  <label for="identifiant" class="col-sm-2 col-form-label">Identifiant</label>
+				  <label for="identifiant" class="col-sm-2 col-form-label">Pseudo ou email</label>
 				  <div class="col-sm-10">
-				    <input type="text" class="form-control" id="identifiant">
+				    <input type="text" class="form-control" id="pseudoOrEmail" name="pseudoOrEmail">
 				  </div>
 				</div>
 			</div>
 			<div class="form-group">
 				<div class="mb-3 row">
-				  <label for="nom" class="col-sm-2 col-form-label">Mdp</label>
+				  <label for="motDePasse" class="col-sm-2 col-form-label">Mot de passe</label>
 				  <div class="col-sm-10">
-				    <input type="password" class="form-control" id="password">
+				    <input type="motDePasse" class="form-control" id="motDePasse" name="motDePasse">
 				  </div>
 				</div>
 			</div>
@@ -36,7 +38,7 @@
 				<div class="col-7">
 					<div class="checkbox">
 					  <label><input type="checkbox"> Se souvenir de moi</label><br/>
-					  <a href="#">Mot de passe oublié</a>
+					  <a href="#">Mot de passe oublié?</a>
 					</div>
 				</div>
 			</div>

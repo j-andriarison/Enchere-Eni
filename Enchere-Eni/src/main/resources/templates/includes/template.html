@@ -55,14 +55,14 @@ footer (Copyright...)
 					<ul th:if="${session.utilisateurConnecte}" class="navbar-nav ms-auto mb-2 mb-md-0">
 						<li class="nav-item "><a class="nav-link" href="#">Enchere</a></li>
 						<li class="nav-item "><a class="nav-link" href="#">Vendre un article</a></li>
-						<li class="nav-item "><a class="nav-link" href="">Mon profile</a></li>
+						<li class="nav-item "><a class="nav-link" href="/utilisateur/profile">Mon profile</a></li>
 						<li class="nav-item "><a class="nav-link" href="/logout">Deconnexion</a></li>
 					</ul>
 					
 					<ul th:if="${session.utilisateurConnecte == null }" class="navbar-nav ms-auto mb-2 mb-md-0">
-					<li class="nav-item "><a class="nav-link" href="signin">S'inscrire</a>
+					<li class="nav-item "><a class="nav-link" href="inscription">S'inscrire</a>
 						</li>
-						<li class="nav-item "><a class="nav-link" href="login">Se
+						<li class="nav-item "><a class="nav-link" href="/connexion">Se
 								connecter</a></li>
 					</ul>
 				</div>

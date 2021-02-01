@@ -1,11 +1,18 @@
 package fr.cda.eni.encherir.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -14,31 +21,39 @@ import javax.persistence.Table;
 public class Utilisateur {
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-	private Long 	id;
-	@Column(nullable=false, columnDefinition = "varchar(255)")
-	private String 	nom;
-	private String 	prenom;
-	@Column(nullable=false)
-	private String 	email;
-	@Column(nullable=false)
-	private String 	pseudo;
-	private String 	motDePasse;
-	
-	@Embedded
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
+	@Column(nullable = false, columnDefinition = "varchar(255)")
+	private String nom;
+	private String prenom;
+	@Column(nullable = false)
+	private String email;
+	@Column(nullable = false)
+	private String pseudo;
+	private String motDePasse;
+
+	@OneToOne( optional = false, orphanRemoval = true, fetch = FetchType.LAZY, cascade = CascadeType.ALL )
+	@JoinColumn(name = "adresse_id")
 	private Adresse adresse;
-	private String 	telephone;
-	private Integer 	credit;
 	
+	private String telephone;
+	private Integer credit;
+
 	@Column(nullable = false)
 	private Boolean isAdministrateur;
+
+	@OneToMany(
+			mappedBy = "utilisateur",
+			cascade = CascadeType.ALL, 
+			orphanRemoval = true)
+	private List<Article> articles = new ArrayList<>();
 
 	/**
 	 * 
 	 */
 	public Utilisateur() {
 	}
-	
+
 	/**
 	 * @param nom
 	 * @param prenom
@@ -196,6 +211,20 @@ public class Utilisateur {
 		this.isAdministrateur = isAdministrateur;
 	}
 
+	/**
+	 * @return the articles
+	 */
+	public List<Article> getArticles() {
+		return articles;
+	}
+
+	/**
+	 * @param articles the articles to set
+	 */
+	public void setArticles(List<Article> articles) {
+		this.articles = articles;
+	}
+
 	@Override
 	public String toString() {
 		return "Utilisateur [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", email=" + email + ", pseudo="
@@ -203,7 +232,4 @@ public class Utilisateur {
 				+ ", credit=" + credit + ", isAdministrateur=" + isAdministrateur + "]";
 	}
 
-	
-	
-	
 }

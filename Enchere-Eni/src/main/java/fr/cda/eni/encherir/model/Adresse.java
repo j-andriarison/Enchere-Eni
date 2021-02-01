@@ -1,7 +1,7 @@
 package fr.cda.eni.encherir.model;
 
 import javax.persistence.Column;
-import javax.persistence.Embeddable;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -15,16 +15,21 @@ import javax.persistence.Table;
  * @author Jean ANDRIANARISON
  * 
  */
-@Embeddable
+@Entity
+@Table(name = "adresse")
 public class Adresse {
 
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
+	
 	@Column(nullable=false)
 	private String rue;
 	@Column(nullable=false)
 	private int codePostal;
 	@Column(nullable=false)
 	private String ville;
-	
 	
 	/**
 	 * 
@@ -42,6 +47,14 @@ public class Adresse {
 		this.rue = rue;
 		this.codePostal = codePostal;
 		this.ville = ville;
+	}
+
+
+	/**
+	 * @return the id
+	 */
+	public Long getId() {
+		return id;
 	}
 
 
@@ -92,12 +105,6 @@ public class Adresse {
 		this.ville = ville;
 	}
 
-
-	@Override
-	public String toString() {
-		return "Adresse [rue=" + rue + ", codePostal=" + codePostal + ", ville=" + ville + "]";
-	}
-	
 	
 	
 }
