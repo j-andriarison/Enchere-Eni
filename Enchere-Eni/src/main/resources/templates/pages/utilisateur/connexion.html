@@ -9,9 +9,9 @@
 	<header th:replace="includes/template.html :: header"></header>
 	<main class="container flex-grow-1 d-flex flex-column justify-content-around">
 		
-		<span th:text="${messageErreurConnexion}"></span>
-		<span th:text="${messageErreurInscription}"></span>
-		<span th:text="${messageInvitationConnexion}"></span>
+		<span class="text-danger" th:text="${messageErreurConnexion}"></span>
+		<span class="text-danger" th:text="${messageErreurInscription}"></span>
+		<span class="text-danger" th:text="${messageInvitationConnexion}"></span>
 		<form action="/connexion" method="post" >
 			<div class="form-group">
 				<div class="mb-3 row">

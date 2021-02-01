@@ -39,7 +39,7 @@ footer (Copyright...)
 		<!-- Fixed navbar -->
 		<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
 			<div class="container-fluid">
-				<a class="navbar-brand" href="/">EniEncheres</a>
+				<a class="navbar-brand" href="/">Eni Encheres</a>
 
 				<button class="navbar-toggler" type="button"
 					data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
@@ -52,14 +52,14 @@ footer (Copyright...)
 						<li class="nav-item "></li>
 					</ul>
 
-					<ul th:if="${session.utilisateurConnecte}" class="navbar-nav ms-auto mb-2 mb-md-0">
+					<ul th:if="${session.sessionUtilisateurMap}" class="navbar-nav ms-auto mb-2 mb-md-0">
 						<li class="nav-item "><a class="nav-link" href="#">Enchere</a></li>
 						<li class="nav-item "><a class="nav-link" href="#">Vendre un article</a></li>
 						<li class="nav-item "><a class="nav-link" href="/utilisateur/profile">Mon profile</a></li>
 						<li class="nav-item "><a class="nav-link" href="/logout">Deconnexion</a></li>
 					</ul>
 					
-					<ul th:if="${session.utilisateurConnecte == null }" class="navbar-nav ms-auto mb-2 mb-md-0">
+					<ul th:if="${session.sessionUtilisateurMap == null }" class="navbar-nav ms-auto mb-2 mb-md-0">
 					<li class="nav-item "><a class="nav-link" href="inscription">S'inscrire</a>
 						</li>
 						<li class="nav-item "><a class="nav-link" href="/connexion">Se

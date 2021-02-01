@@ -1,145 +1,157 @@
 <!DOCTYPE html>
 <html lang="fr" xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org" class="h-100">
+	xmlns:th="http://www.thymeleaf.org" class="h-100">
 <head th:replace="includes/template.html :: head">
-	
+
 </head>
 
 <body class="d-flex flex-column h-100">
 	<header th:replace="includes/template.html :: header"></header>
-	<main class="container flex-grow-1 d-flex flex-column justify-content-around">
-		
-		
+	<main
+		class="container flex-grow-1 d-flex flex-column justify-content-around">
+
+
 		<div class="container">
-    <div class="main-body">
-    
-          <!-- Breadcrumb -->
-          <nav aria-label="breadcrumb" class="main-breadcrumb">
-            <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="/home">Accueil</a></li>
-              <li class="breadcrumb-item"><a href="#">Utilisateur</a></li>
-              <li class="breadcrumb-item active" aria-current="page">Mon profileUtilisateur</li>
-            </ol>
-          </nav>
-          <!-- /Breadcrumb -->
-    
-          <div class="row gutters-sm">
-            <div class="col-md-4 mb-3">
-              <div class="card">
-                <div class="card-body">
-                  <div class="d-flex flex-column align-items-center text-center">
-                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle" width="150">
-                    <div class="mt-3">
-                      <h4 th:text="${profileUtilisateur.prenom + ' ' +profileUtilisateur.nom}"></h4>
-                      <p class="text-secondary mb-1">Full Stack Developer</p>
-                      <p class="text-muted font-size-sm">Bay Area, San Francisco, CA</p>
-                      <button class="btn btn-primary">Voir mes achats</button>
-                      <button class="btn btn-outline-primary">Voir mes ventes</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              
-            </div>
-            <div class="col-md-8">
-              <div class="card mb-3">
-                <div class="card-body" th:object="${profileUtilisateur}">
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <h6 class="mb-0">Nom</h6>
-                    </div>
-                    <div class="col-sm-9 text-secondary" th:text="*{nom}">
-                       Nom
-                    </div>
-                  </div>
-                  <hr>
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <h6 class="mb-0">Prenom</h6>
-                    </div>
-                    <div class="col-sm-9 text-secondary" th:text="*{prenom}">
-                       Prenom
-                    </div>
-                  </div>
-                  <hr>
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <h6 class="mb-0">Email</h6>
-                    </div>
-                    <div class="col-sm-9 text-secondary" th:text="*{email}">
-                      fip@jukmuh.al
-                    </div>
-                  </div>
-                  <hr>
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <h6 class="mb-0">Pseudo</h6>
-                    </div>
-                    <div class="col-sm-9 text-secondary" th:text="*{pseudo}">
-                      pseudo
-                    </div>
-                  </div>
-                  <hr>
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <h6 class="mb-0">Mot de passe</h6>
-                    </div>
-                    <div class="col-sm-9 text-secondary">
-                      *********
-                    </div>
-                  </div>
-                  <hr>
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <h6 class="mb-0">Email</h6>
-                    </div>
-                    <div class="col-sm-9 text-secondary" th:text="*{email}">
-                      fip@jukmuh.al
-                    </div>
-                  </div>
-                  <hr>
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <h6 class="mb-0">Telephone</h6>
-                    </div>
-                    <div class="col-sm-9 text-secondary" th:text="*{telephone}">
-                      (239) 816-9029
-                    </div>
-                  </div>
-                  <hr>
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <h6 class="mb-0">Credit</h6>
-                    </div>
-                    <div class="col-sm-9 text-secondary" th:text="*{credit}">
-                      0.0
-                    </div>
-                  </div>
-                  <hr>
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <h6 class="mb-0">Addresse</h6>
-                    </div>
-                    <div class="col-sm-9 text-secondary" th:text="*{adresse.rue}+ ', ' + *{adresse.codePostal}+ ', ' + *{adresse.ville}">
-                      Bay Area, San Francisco, CA
-                    </div>
-                  </div>
-                  <hr>
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <h6 class="mb-0">Actions:</h6>
-                    </div>
-                    <div class="col-sm-9 text-secondary">
-<a href="/utilisateur/profile/edit">Modifier mon profile</a> | <a href="#" target-action="/utilisateur/profile/supprimer" data-title="Suppression de compte!" id="confirmDelete">Supprimer mon compte</a> | 
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-    </div>
-			
+			<div class="main-body">
+
+				<!-- Breadcrumb -->
+				<nav aria-label="breadcrumb" class="main-breadcrumb">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item"><a href="/home">Accueil</a></li>
+						<li class="breadcrumb-item"><a href="#">Utilisateur</a></li>
+						<li class="breadcrumb-item active" aria-current="page">Mon
+							profileUtilisateur</li>
+					</ol>
+				</nav>
+				<!-- /Breadcrumb -->
+
+				<div class="row gutters-sm">
+					<div class="col-md-4 mb-3">
+						<div class="card">
+							<div class="card-body">
+								<div class="d-flex flex-column align-items-center text-center">
+									<img src="https://bootdey.com/img/Content/avatar/avatar7.png"
+										alt="Admin" class="rounded-circle" width="150">
+									<div class="mt-3">
+										<h4
+											th:text="${profileUtilisateur.prenom + ' ' +profileUtilisateur.nom}"></h4>
+										<p class="text-secondary mb-1">
+											Status : <span
+												th:text="${profileUtilisateur.isAdministrateur}">Administrateur</span>
+										</p>
+										<p class="text-muted font-size-sm">Bay Area, San
+											Francisco, CA</p>
+										<button class="btn btn-primary">Voir mes achats</button>
+										<button class="btn btn-outline-primary">Voir mes
+											ventes</button>
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+					<div class="col-md-8">
+						<div class="card mb-3">
+							<div class="card-body" th:object="${profileUtilisateur}">
+								<div class="row">
+									<div class="col-sm-3">
+										<h6 class="mb-0">Nom</h6>
+									</div>
+									<div class="col-sm-9 text-secondary" th:text="*{nom}">
+										Nom</div>
+								</div>
+								<hr>
+								<div class="row">
+									<div class="col-sm-3">
+										<h6 class="mb-0">Prenom</h6>
+									</div>
+									<div class="col-sm-9 text-secondary" th:text="*{prenom}">
+										Prenom</div>
+								</div>
+								<hr>
+								<div class="row">
+									<div class="col-sm-3">
+										<h6 class="mb-0">Email</h6>
+									</div>
+									<div class="col-sm-9 text-secondary" th:text="*{email}">
+										fip@jukmuh.al</div>
+								</div>
+								<hr>
+								<div class="row">
+									<div class="col-sm-3">
+										<h6 class="mb-0">Pseudo</h6>
+									</div>
+									<div class="col-sm-9 text-secondary" th:text="*{pseudo}">
+										pseudo</div>
+								</div>
+								<hr>
+								<div class="row">
+									<div class="col-sm-3">
+										<h6 class="mb-0">Mot de passe</h6>
+									</div>
+									<div class="col-sm-9 text-secondary">********* ( <a href="/utilisateur/profile/motdepasse" th:href="@{profile/motdepasse-change}">Modifier</a> )
+									
+									
+									<span class="" th:text="${messageSucces}">
+										Message succes</span>
+									</div>
+								</div>
+								<hr>
+								<div class="row">
+									<div class="col-sm-3">
+										<h6 class="mb-0">Email</h6>
+									</div>
+									<div class="col-sm-9 text-secondary" th:text="*{email}">
+										fip@jukmuh.al</div>
+								</div>
+								<hr>
+								<div class="row">
+									<div class="col-sm-3">
+										<h6 class="mb-0">Telephone</h6>
+									</div>
+									<div class="col-sm-9 text-secondary" th:text="*{telephone}">
+										(239) 816-9029</div>
+								</div>
+								<hr>
+								<div class="row">
+									<div class="col-sm-3">
+										<h6 class="mb-0">Credit</h6>
+									</div>
+									<div class="col-sm-9 text-secondary" th:text="*{credit}">
+										0.0</div>
+								</div>
+								<hr>
+								<div class="row">
+									<div class="col-sm-3">
+										<h6 class="mb-0">Addresse</h6>
+									</div>
+									<div class="col-sm-9 text-secondary"
+										th:text="*{adresse.rue}+ ', ' + *{adresse.codePostal}+ ', ' + *{adresse.ville}">
+										Bay Area, San Francisco, CA</div>
+								</div>
+								<hr>
+								<div class="row">
+									<div class="col-sm-3">
+										<h6 class="mb-0">Actions:</h6>
+									</div>
+									<div class="col-sm-9 text-secondary">
+									
+										<span
+											th:if="${#strings.equals(profileUtilisateur.id, #strings.toString(session.sessionUtilisateurMap.id)) or session.sessionUtilisateurMap.isAdministrateur == true}">
+											<a href="/utilisateur/profile/edit">Modifier le profile</a> | 
+										</span>
+										<a href="#"
+											target-action="/utilisateur/profile/supprimer"
+											data-title="Suppression de compte!" id="confirmDelete">Supprimer le compte</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
 	</main>
 	<div th:replace="includes/template.html :: footer"></div>
 	<link rel="stylesheet"
@@ -147,8 +159,8 @@
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
 
-<script type="text/javascript" th:src="@{/js/confirmAction.js}" ></script>
+	<script type="text/javascript" th:src="@{/js/confirmAction.js}"></script>
 
-	
+
 </body>
 </html>

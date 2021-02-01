@@ -1,10 +1,12 @@
 $(document).ready(function() {
-	console.log("ready!"); 
+	console.log("ready!");
 	jQuery.validator.setDefaults({
 		debug: true,
 		success: "valid"
 	});
 
+
+	// Validation de formulaire pour l'inscription
 	$('#inscription').validate({
 		rules: {
 			pseudo:
@@ -18,17 +20,17 @@ $(document).ready(function() {
 				required: true,
 				email: true
 			},
-			nom:{
+			nom: {
 				required: true,
 				minlength: 3,
 				maxlength: 50
 			},
-			prenom:{
+			prenom: {
 				required: true,
 				minlength: 3,
 				maxlength: 50
 			},
-			telephone:{
+			telephone: {
 				required: true,
 				minlength: 10,
 				maxlength: 20
@@ -43,18 +45,18 @@ $(document).ready(function() {
 				equalTo: "#motDePasse"
 
 			},
-			rue:{
+			rue: {
 				required: true,
 				minlength: 10,
 				maxlength: 50
 			},
-			codePostal:{
+			codePostal: {
 				required: true,
 				number: true,
 				digits: true,
-				minlength: 5,maxlength: 5
+				minlength: 5, maxlength: 5
 			},
-			ville:{
+			ville: {
 				required: true,
 				minlength: 5,
 				maxlength: 50
@@ -77,9 +79,54 @@ $(document).ready(function() {
 				error.insertAfter(element);
 			}
 		},
-        submitHandler: function(form) {
-            form.submit(); // <- use 'form' argument here.
-        }
+		submitHandler: function(form) {
+			form.submit(); // <- use 'form' argument here.
+		}
+
+	})
+
+	// Validation de changement de mot de passe
+
+	// Validation de formulaire pour l'inscription
+	$('#motdepasse-change').validate({
+		rules: {
+			motDePasseActuel:
+			{
+				required: true,
+				minlength: 3,
+				maxlength: 10
+			},
+			motDePasse:
+			{
+				required: true,
+				minlength: 3,
+				maxlength: 10
+			},
+			verif_password: {
+				equalTo: "#motDePasse"
+
+			}
+		},
+
+		highlight: function(element) {
+			$(element).closest('.form-group').addClass('has-error');
+
+		},
+		unhighlight: function(element) {
+			$(element).closest('.form-group').removeClass('has-error');
+		},
+		errorElement: 'span',
+		errorClass: 'alert-danger',
+		errorPlacement: function(error, element) {
+			if (element.parent('.input-group').length) {
+				error.insertAfter(element.parent());
+			} else {
+				error.insertAfter(element);
+			}
+		},
+		submitHandler: function(form) {
+			form.submit(); // <- use 'form' argument here.
+		}
 
 	})
 });
