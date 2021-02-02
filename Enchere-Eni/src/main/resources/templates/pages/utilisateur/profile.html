@@ -37,10 +37,8 @@
 											th:text="${profileUtilisateur.prenom + ' ' +profileUtilisateur.nom}"></h4>
 										<p class="text-secondary mb-1">
 											Status : <span
-												th:text="${profileUtilisateur.isAdministrateur}">Administrateur</span>
+												th:text="${profileUtilisateur.isAdministrateur == true ? 'Administrateur' : 'Client'}">Administrateur</span>
 										</p>
-										<p class="text-muted font-size-sm">Bay Area, San
-											Francisco, CA</p>
 										<button class="btn btn-primary">Voir mes achats</button>
 										<button class="btn btn-outline-primary">Voir mes
 											ventes</button>
@@ -89,7 +87,9 @@
 									<div class="col-sm-3">
 										<h6 class="mb-0">Mot de passe</h6>
 									</div>
-									<div class="col-sm-9 text-secondary">********* ( <a href="/utilisateur/profile/motdepasse" th:href="@{profile/motdepasse-change}">Modifier</a> )
+									<div class="col-sm-9 text-secondary">********* <span
+											th:if="${#strings.equals(profileUtilisateur.id, #strings.toString(session.sessionUtilisateurMap.id)) or session.sessionUtilisateurMap.isAdministrateur == true}">
+											( <a href="/utilisateur/profile/motdepasse" th:href="@{profile/motdepasse-change}">Modifier</a> )</span>
 									
 									
 									<span class="" th:text="${messageSucces}">
@@ -134,15 +134,15 @@
 									<div class="col-sm-3">
 										<h6 class="mb-0">Actions:</h6>
 									</div>
-									<div class="col-sm-9 text-secondary">
-									
-										<span
-											th:if="${#strings.equals(profileUtilisateur.id, #strings.toString(session.sessionUtilisateurMap.id)) or session.sessionUtilisateurMap.isAdministrateur == true}">
+									<div class="col-sm-9 text-secondary"
+											th:if="${#strings.equals(#strings.toString(profileUtilisateur.id), #strings.toString(session.sessionUtilisateurMap.id)) or session.sessionUtilisateurMap.isAdministrateur == true}">
+											
 											<a href="/utilisateur/profile/edit">Modifier le profile</a> | 
-										</span>
+										
 										<a href="#"
 											target-action="/utilisateur/profile/supprimer"
 											data-title="Suppression de compte!" id="confirmDelete">Supprimer le compte</a>
+										
 									</div>
 								</div>
 							</div>

@@ -113,20 +113,31 @@ public class UtilisateurController {
 				.orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + utilisateurAChercher));
 
 		request.setAttribute("profileUtilisateur", profileUtilisateur);
+		
 		return "pages/utilisateur/profile";
 	}
 
-	@GetMapping("/utilisateur/profile/edit")
-	public String profileEdit(HttpServletRequest request) {
+	@RequestMapping(value = { "/utilisateur/profile/edit", "/utilisateur/profile/edit/{userId}" })
+	public String profileEdit(HttpServletRequest request,
+			@PathVariable(value = "userId", required = false) Long idUtilisateurAVisualiser) {
 
-		Long sessionIdUtilisateur = (Long) request.getSession().getAttribute("sessionUtilisateur");
+		// Recuperation de la session Utilisateur
+				Map<String, String> sessionUtilisateurMap = (Map<String, String>) request.getSession()
+						.getAttribute("sessionUtilisateurMap");
+				Long utilisateurAChercher;
 
-		if (sessionIdUtilisateur == null) {
-			return "redirect:/connexion";
-		}
-		Utilisateur profileUtilisateur = utilisateurRepository.findById(sessionIdUtilisateur)
-				.orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + sessionIdUtilisateur));
-		request.setAttribute("profileUtilisateur", profileUtilisateur);
+				if (sessionUtilisateurMap == null && idUtilisateurAVisualiser == null) {
+					return "redirect:/connexion";
+				} else {
+					utilisateurAChercher = (idUtilisateurAVisualiser == null) ? Long.parseLong(sessionUtilisateurMap.get("id"))
+							: idUtilisateurAVisualiser;
+				}
+
+				Utilisateur profileUtilisateur = utilisateurRepository.findById(utilisateurAChercher)
+						.orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + utilisateurAChercher));
+
+				request.setAttribute("profileUtilisateur", profileUtilisateur);
+		
 		return "pages/utilisateur/edit";
 	}
 
@@ -181,8 +192,7 @@ public class UtilisateurController {
 		// Recuperation de la session Utilisateur
 		Map<String, String> sessionUtilisateurMap = (Map<String, String>) request.getSession()
 				.getAttribute("sessionUtilisateurMap");
-		Long utilisateurAChercher;
-
+		
 		if (sessionUtilisateurMap == null) {
 			return "redirect:/connexion";
 		}

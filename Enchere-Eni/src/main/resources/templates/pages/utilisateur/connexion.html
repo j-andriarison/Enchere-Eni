@@ -1,54 +1,61 @@
+
+
 <!DOCTYPE html>
 <html lang="fr" xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org" class="h-100">
+	xmlns:th="http://www.thymeleaf.org" class="h-100">
 <head th:replace="includes/template.html :: head">
-	
+
 </head>
 
 <body class="d-flex flex-column h-100">
 	<header th:replace="includes/template.html :: header"></header>
-	<main class="container flex-grow-1 d-flex flex-column justify-content-around">
-		
-		<span class="text-danger" th:text="${messageErreurConnexion}"></span>
-		<span class="text-danger" th:text="${messageErreurInscription}"></span>
-		<span class="text-danger" th:text="${messageInvitationConnexion}"></span>
-		<form action="/connexion" method="post" >
-			<div class="form-group">
-				<div class="mb-3 row">
-				  <label for="identifiant" class="col-sm-2 col-form-label">Pseudo ou email</label>
-				  <div class="col-sm-10">
-				    <input type="text" class="form-control" id="pseudoOrEmail" name="pseudoOrEmail">
-				  </div>
-				</div>
+	<main
+		class="container flex-grow-1 d-flex flex-column justify-content-around">
+
+		<div class="row">
+			<div class="col-6 text-center">
+				<img src="images/logo.png" width="300px">
+				<h3>Avec Eni Enchere, partagez, restez et suivre vos encheres.</h3>
 			</div>
-			<div class="form-group">
-				<div class="mb-3 row">
-				  <label for="motDePasse" class="col-sm-2 col-form-label">Mot de passe</label>
-				  <div class="col-sm-10">
-				    <input type="motDePasse" class="form-control" id="motDePasse" name="motDePasse">
-				  </div>
-				</div>
-			</div>
-			<div class="row mt-5 px-2">
-				<div class="col-5">
-					<button type="submit" class="btn btn-primary w-100 py-3">
-						Connexion
-					</button>
-				</div>
-				<div class="col-7">
-					<div class="checkbox">
-					  <label><input type="checkbox"> Se souvenir de moi</label><br/>
-					  <a href="#">Mot de passe oublié?</a>
+			<div class="col-6 text-center">
+				<span class="text-danger" th:text="${messageErreurConnexion}"></span>
+				<span class="text-danger" th:text="${messageErreurInscription}"></span>
+				<span class="text-danger" th:text="${messageInvitationConnexion}"></span>
+				<form action="/connexion" method="post"
+					id="motdepasse-change">
+
+					<h3>Se connecter</h3>
+					<!-- Mot de passe input -->
+					<div class="form-group">
+						<label class="form-label" for="pseudo">Identifiant</label> <input type="text" id="pseudoOrEmail"
+							name="pseudoOrEmail" placeholder="Adresse e-mail ou pseudo" class="form-control" />
 					</div>
-				</div>
+					<!-- Password input -->
+					<div class="form-group">
+						<label class="form-label" for="password">Mot de passe</label> <input
+							type="password" id="motDePasse" name="motDePasse" placeholder="*****"
+							class="form-control" />
+					</div>
+
+					<div class="row justify-content-center mt-5">
+						<div class="col-12 col-lg-6">
+							<!-- Submit button -->
+							<button type="submit" id="btnEnregistrer"
+								class="btn btn-primary w-100">Connexion</button>
+						</div>
+						<div class="col-12 col-lg-6">
+							<!-- Submit button -->
+							<a href="/utilisateur/profile" class="btn btn-secondary w-100">Creer un compte</a>
+						</div>
+					</div>
+					<span id='message'></span>
+				</form>
 			</div>
-		</form>
-		
-		<div class="row mt-4 px-2 gx-0">
-			<button class="btn btn-outline-primary w-100 py-5">Créer un compte</button>
 		</div>
-			
 	</main>
 	<div th:replace="includes/template.html :: footer"></div>
+	<script
+		src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.0/jquery.validate.min.js"></script>
+	<script type="text/javascript" th:src="@{/js/ValidationFormScript.js}"></script>
 </body>
 </html>
