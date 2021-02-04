@@ -1,21 +1,59 @@
 package fr.cda.eni.encherir.controller;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import fr.cda.eni.encherir.dal.ArticleRepository;
+import fr.cda.eni.encherir.dal.CategorieRepository;
+import fr.cda.eni.encherir.dal.FichierRepository;
+import fr.cda.eni.encherir.dal.UtilisateurRepository;
+import fr.cda.eni.encherir.model.Article;
+import fr.cda.eni.encherir.model.Utilisateur;
 
 @Controller
 public class PagesController 
 {
 	
+
+	@Autowired
+	private ArticleRepository articleRepository;
+
+	@Autowired
+	private UtilisateurRepository utilisateurRepository;
+
+	@Autowired
+	private FichierRepository fichierRepository;
+
+	@Autowired
+	private CategorieRepository categorieRepository;
 	
-	@GetMapping("/home") 
-	public String home(HttpServletRequest request) {
+	
+	public static String uploadRootPath = System.getProperty("user.dir") + "/uploads/images";
+
+	
+	@RequestMapping(value = { "/" })
+	public String listeArticle(HttpServletRequest request,
+			@PathVariable(value = "userId", required = false) Long idUtilisateurAVisualiser) {
 		
-		return "pages/index";
+		
+		// Recuperation de la liste des articles par utilisateur donnee
+		
+		Iterable<Article> listeArticle = articleRepository.findAll();
+		request.setAttribute("listeArticle", listeArticle);
+		
+		//System.out.println(listeArticle);
+		
+		request.setAttribute("uploadRootPath", uploadRootPath);
+		
+		return "/pages/articles/index";
 	}
-	
 	@GetMapping("/accueil") 
 	public String accueil(HttpServletRequest request) {
 		

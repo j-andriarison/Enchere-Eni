@@ -1,38 +1,57 @@
 package fr.cda.eni.encherir.model;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
 
 @Entity
 @Table(name = "article")
 public class Article {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Utilisateur utilisateur;
 
-	@Column(nullable=false, columnDefinition = "varchar(255)")
+	@Column(nullable=false)
 	private String titre;
 
-	@Column(nullable=false, columnDefinition = "varchar(255)")
+	@Lob
+	@Column(nullable=false)
 	private String description;
 	
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
 	private LocalDateTime dateDebutEncheres;
+	
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
 	private LocalDateTime dateFinEncheres;
+	
 	private double prixInitial;
 	private double prixVente;
 	
+	@OneToMany(
+			mappedBy = "article",
+			cascade = CascadeType.ALL, 
+			orphanRemoval = true)
+	private List<Fichier> fichierImage = new ArrayList<>(); ;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Categorie categorie;
@@ -68,10 +87,6 @@ public class Article {
 		this.prixVente = prixVente;
 		this.categorie = categorie;
 	}
-
-
-
-
 
 	/**
 	 * @return the id
@@ -135,6 +150,7 @@ public class Article {
 		this.dateDebutEncheres = dateDebutEncheres;
 	}
 
+
 	/**
 	 * @return the dateFinEncheres
 	 */
@@ -147,6 +163,16 @@ public class Article {
 	 */
 	public void setDateFinEncheres(LocalDateTime dateFinEncheres) {
 		this.dateFinEncheres = dateFinEncheres;
+	}
+
+	/**
+	 * @param dateFinEncheres the dateFinEncheres to set
+	 */
+	public void setDateFinEncheres(String dateFinEncheres) {
+		
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+		
+		this.dateFinEncheres = LocalDateTime.parse(dateFinEncheres, formatter);
 	}
 
 	/**
@@ -192,6 +218,21 @@ public class Article {
 		this.categorie = categorie;
 	}
 
+	
+	/**
+	 * @return the fichierImage
+	 */
+	public List<Fichier> getFichierImage() {
+		return fichierImage;
+	}
+
+	/**
+	 * @param fichierImage the fichierImage to set
+	 */
+	public void setFichierImage(List<Fichier> fichierImage) {
+		this.fichierImage = fichierImage;
+	}
+
 	@Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -199,13 +240,5 @@ public class Article {
         return id != null && id.equals(((Article) o).getId());
     }
 
-	@Override
-	public String toString() {
-		return "Article [id=" + id + ", utilisateur=" + utilisateur + ", titre=" + titre + ", description="
-				+ description + ", dateDebutEncheres=" + dateDebutEncheres + ", dateFinEncheres=" + dateFinEncheres
-				+ ", prixInitial=" + prixInitial + ", prixVente=" + prixVente + ", categorieArticle=" + categorie
-				+ "]";
-	}
-	
-	
+
 }

@@ -23,10 +23,15 @@ footer (Copyright...)
 	rel="stylesheet"
 	integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
 	crossorigin="anonymous">
+	
+	<link th:href="@{/css/enchere-style.css}" rel="stylesheet">
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
 	integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
 	crossorigin="anonymous"></script>
+	
+	
+<link th:href="@{/css/jquery.lightbox.css}" rel="stylesheet">
 <!-- Favicons -->
 <script src="https://kit.fontawesome.com/96486db8a9.js"
 	crossorigin="anonymous"></script>
@@ -39,7 +44,7 @@ footer (Copyright...)
 		<!-- Fixed navbar -->
 		<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
 			<div class="container-fluid">
-				<a class="navbar-brand" href="/">Eni Encheres</a>
+				<a class="navbar-brand" href="/home">Eni Encheres</a>
 
 				<button class="navbar-toggler" type="button"
 					data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
@@ -53,8 +58,8 @@ footer (Copyright...)
 					</ul>
 
 					<ul th:if="${session.sessionUtilisateurMap}" class="navbar-nav ms-auto mb-2 mb-md-0">
-						<li class="nav-item "><a class="nav-link" href="#">Enchere</a></li>
-						<li class="nav-item "><a class="nav-link" href="#">Vendre un article</a></li>
+						<li class="nav-item "><a class="nav-link" href="/">Enchere</a></li>
+						<li class="nav-item "><a class="nav-link" href="/article/creer">Vendre un article</a></li>
 						<li class="nav-item "><a class="nav-link" href="/utilisateur/profile">Mon profile</a></li>
 						<li class="nav-item "><a class="nav-link" href="/logout">Deconnexion</a></li>
 					</ul>

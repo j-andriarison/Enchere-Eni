@@ -21,7 +21,7 @@ import javax.persistence.Table;
 public class Utilisateur {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	@Column(nullable = false, columnDefinition = "varchar(255)")
 	private String nom;

@@ -24,11 +24,11 @@ public class UtilisateurController {
 	@Autowired
 	private UtilisateurRepository utilisateurRepository;
 
+	// -----------------------------------------------------------------------------------------------------
 	@GetMapping("/connexion")
 	public String login() {
 		return "/pages/utilisateur/connexion";
 	}
-
 	@PostMapping("/connexion")
 	public String login(HttpServletRequest request) {
 		String loginOrEmail = request.getParameter("pseudoOrEmail");
@@ -48,6 +48,7 @@ public class UtilisateurController {
 		return "/pages/index";
 	}
 
+	// -----------------------------------------------------------------------------------------------------
 	@GetMapping("/inscription")
 	public String inscription() {
 		return "pages/utilisateur/inscription";
@@ -89,15 +90,17 @@ public class UtilisateurController {
 			return "pages/utilisateur/connexion";
 		}
 
-		return "pages/index";
+		return "redirect:/home";
 
 	}
 
+	// -----------------------------------------------------------------------------------------------------
 	@RequestMapping(value = { "/utilisateur/profile", "/utilisateur/profile/{userId}" })
 	public String profile(HttpServletRequest request,
 			@PathVariable(value = "userId", required = false) Long idUtilisateurAVisualiser) {
 
 		// Recuperation de la session Utilisateur
+		@SuppressWarnings("unchecked")
 		Map<String, String> sessionUtilisateurMap = (Map<String, String>) request.getSession()
 				.getAttribute("sessionUtilisateurMap");
 		Long utilisateurAChercher;
@@ -122,6 +125,7 @@ public class UtilisateurController {
 			@PathVariable(value = "userId", required = false) Long idUtilisateurAVisualiser) {
 
 		// Recuperation de la session Utilisateur
+				@SuppressWarnings("unchecked")
 				Map<String, String> sessionUtilisateurMap = (Map<String, String>) request.getSession()
 						.getAttribute("sessionUtilisateurMap");
 				Long utilisateurAChercher;
@@ -186,10 +190,12 @@ public class UtilisateurController {
 
 	}
 
+	// -----------------------------------------------------------------------------------------------------
 	@GetMapping("/utilisateur/profile/motdepasse-change")
 	public String profileModifMotDePasse(HttpServletRequest request) {
 
 		// Recuperation de la session Utilisateur
+		@SuppressWarnings("unchecked")
 		Map<String, String> sessionUtilisateurMap = (Map<String, String>) request.getSession()
 				.getAttribute("sessionUtilisateurMap");
 		
@@ -205,6 +211,8 @@ public class UtilisateurController {
 		return "pages/utilisateur/motdepasse-change";
 	}
 
+	// -----------------------------------------------------------------------------------------------------
+	
 	@PostMapping("/utilisateur/profile/motdepasse-change")
 	public String profileModifMotDePasse(@ModelAttribute("utilisateur") Utilisateur utilisateur,
 			HttpServletRequest request) {
@@ -239,6 +247,7 @@ public class UtilisateurController {
 
 	}
 
+	// -----------------------------------------------------------------------------------------------------
 	@GetMapping("/utilisateur/profile/supprimer")
 	public String profileSupprimer(HttpServletRequest request) {
 
@@ -258,6 +267,7 @@ public class UtilisateurController {
 		return "pages/utilisateur/messager";
 	}
 
+	// -----------------------------------------------------------------------------------------------------
 	@GetMapping("/logout")
 	public String destroySession(HttpServletRequest request) {
 		request.getSession().invalidate();

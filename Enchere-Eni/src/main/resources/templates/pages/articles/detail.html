@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org" class="h-100">
+<head th:replace="includes/template.html :: head">
+
+</head>
+
+<body class="d-flex flex-column h-100">
+	<header th:replace="includes/template.html :: header"></header>
+	<main
+		class="container flex-grow-1 d-flex flex-column justify-content-around">
+		<div>
+
+			<span th:text="${message}"></span>
+			<!--  Articles -->
+			<div class="encheres_en_cours col-12 col-lg-12"
+				th:object="${detailArticle}">
+				<div class="card px-2">
+					<div class="row align-items-center">
+						<div class="col-6 gallery">
+							<img class="img-fluid img-thumbnail img-detail"
+								th:src="*{'/uploads/' + fichierImage[0].nomFichier}" alt="...">
+							<br>
+
+							<a th:each="image : *{fichierImage}" th:data-caption="${image.nomFichier}" th:href="${'/uploads/' + image.nomFichier}">
+								<img class="img-fluid img-thumbnail img-mini"
+									th:src="${'/uploads/' + image.nomFichier}" th:alt="${image.nomFichier}"></a>
+
+						</div>
+						<div class="col-6">
+							<div class="card-body">
+								<h5 class="card-title" th:text="*{titre}"></h5>
+								<div class="row">
+
+									<div class="col-lg-3">
+										<b>Description</b>
+									</div>
+									<div class="col-lg-9">
+										<p class="text-justify" th:text="*{description}">Description</p>
+									</div>
+
+								</div>
+
+								<p class="card-text">
+									<b>Categorie:</b> <span th:text="*{categorie.titre}">Nom de la categorie</span>
+								</p>
+								<p class="card-text">
+									<b>Meilleur offre:</b> <span>Meilleur offre</span>
+								</p>
+								<p class="card-text">
+									<b>Mise a prix:</b> <span th:text="*{prixInitial}">Valeur
+										du prix</span> €
+								</p>
+								<p class="card-text">
+									<b>Retrait:</b> <span
+										th:text="*{utilisateur.adresse.rue+', '+utilisateur.adresse.codePostal+', '+utilisateur.adresse.ville}">Fin
+										de l'enchere</span>
+								</p>
+								<p class="card-text">
+									Date fin de l'enchere: <span
+										th:text="*{#temporals.format(dateFinEncheres, 'yyyy-MM-dd HH:mm')}">Fin
+										de l'enchere</span>
+								</p>
+								<p class="card-text">
+									Date fin de l'enchere: <span
+										th:text="*{#temporals.format(dateFinEncheres, 'yyyy-MM-dd HH:mm')}">Fin
+										de l'enchere</span>
+								</p>
+								<p class="card-text">
+									<b>Vendeur: </b>
+									
+									<a th:href="*{'/article/'+utilisateur.pseudo+'-ventes/'+utilisateur.id}" th:text="*{utilisateur.pseudo}">Pseudo</span></a>
+									(<a th:href="*{'/utilisateur/profile/'+utilisateur.id}">Voir son profile</span></a>)
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</main>
+	<div th:replace="includes/template.html :: footer"></div>
+    	<script type="text/javascript" th:src="@{/js/jquery.lightbox.js}" ></script>
+
+	<script>
+  // Initiate Lightbox
+  $(function() {
+    $('.gallery a').lightbox();
+  });
+</script>
+</body>
+</html>

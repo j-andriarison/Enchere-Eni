@@ -1,0 +1,14 @@
+@charset "UTF-8";
+
+.encheres_en_cours{
+	padding:10px
+}
+.text-justify{
+	text-align: justify;
+}
+.img-detail{
+	min-width: 600px
+}
+.img-mini{
+	height: 100px
+}

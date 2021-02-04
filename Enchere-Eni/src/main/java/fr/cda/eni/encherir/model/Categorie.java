@@ -18,7 +18,7 @@ import javax.persistence.Table;
 public class Categorie {
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long 	id;
 
 
@@ -89,6 +89,11 @@ public class Categorie {
 	 */
 	public void setArticles(List<Article> articles) {
 		this.articles = articles;
+	}
+
+	@Override
+	public String toString() {
+		return "Categorie [id=" + id + ", titre=" + titre + ", articles=" + articles + "]";
 	}
 
 

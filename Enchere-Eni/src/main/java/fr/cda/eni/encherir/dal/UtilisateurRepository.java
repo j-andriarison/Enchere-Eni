@@ -20,4 +20,5 @@ public interface UtilisateurRepository extends CrudRepository<Utilisateur, Long>
 
 	@Query("select u from Utilisateur u where id=?1 and mot_de_passe=?2")
 	Utilisateur findPassword(Long id, String motDePasse);
+	
 }

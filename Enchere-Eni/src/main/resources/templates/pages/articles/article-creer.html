@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org" class="h-100">
+<head th:replace="includes/template.html :: head"></head>
+
+<body class="d-flex flex-column h-100">
+	<header th:replace="includes/template.html :: header"></header>
+	<main
+		class="container flex-grow-1 py-4 d-flex flex-column justify-content-center">
+
+		<h1 class="text-center ">Creation de nouvel article</h1>
+		<form action="#" th:action="@{/article/creer}" method="post"
+			th:object="${article}" id="articleCreer"
+			enctype="multipart/form-data">
+			<!-- 2 column grid layout with text inputs for the first and last names -->
+			<div class="row mb-4 justify-content-around">
+				<div class="col-12 col-lg-4">
+
+					<h3>Article</h3>
+					<!-- Titre de l'article -->
+					<div class="form-group">
+						<label class="form-label" for="pseudo">Titre de l'article</label>
+						<input type="text" id="titre" name="titre" class="form-control"
+							placeholder="Titre de l'article" />
+					</div>
+
+					<!-- Description de l'article -->
+					<div class="form-group">
+						<label class="form-label" for="mail">Description de l'article</label>
+						<textarea id="description" name="description" class="form-control"
+							placeholder="Email"></textarea>
+					</div>
+					<!-- Categorie de l'article -->
+					<div class="form-group">
+						<label class="form-label" for="password">Categorie de l'article</label> 
+						
+						<select
+							class="form-control" name="categorie" >
+							<option >Choisissez la categorie</option>
+							<option th:each="categorie : ${listCategorie}"
+								th:value="${categorie.id}" th:text="${categorie.titre}"></option>
+						</select>
+
+
+
+					</div>
+					<!-- Images de l'article input-->
+					<div class="form-group">
+						<label class="form-label" for="verif_password">Images de
+							l'article</label> <input type="file" id="images" multiple="multiple"
+							name="images" class="form-control" accept="image/png, image/jpeg" />
+					</div>
+					<span id='message'></span>
+				</div>
+				<div class="col-12 col-lg-4">
+					<h3>Enchere</h3>
+					<!-- Mise a prix input-->
+					<div class="form-group">
+						<label class="form-label" for="nom">Mise a prix</label> <input
+							type="text" id="prixInitial" name="prixInitial"
+							class="form-control" placeholder="Nom" />
+					</div>
+					<!-- Debut de l'enchere input-->
+					<div class="form-group">
+						<label class="form-label" for="prenom">Debut de l'enchere</label>
+						<input type="datetime" id="dateDebutEnchere"
+							name="dateDebutEnchere" class="form-control"
+							placeholder="AAAA/MM/JJ h:m" />
+					</div>
+					<!--Fin de l'enchere input-->
+					<div class="form-group">
+						<label class="form-label" for="prenom">Fin de l'enchere</label> <input
+							type="datetime" id="dateFinEnchere" name="dateFinEnchere"
+							class="form-control" placeholder="AAAA/MM/JJ h:m" />
+					</div>
+					<h3>Retrait</h3>
+					<!-- Rue input -->
+					<div class="form-group">
+						<label class="form-label" for="rue">Rue</label> <input type="text"
+							id="rue" name="rue" class="form-control"
+							th:value="${profileUtilisateur.adresse.rue}"
+							placeholder="numero et nom de la rue" />
+					</div>
+					<!-- Code Postal input -->
+					<div class="form-group">
+						<label class="form-label" for="codePostal">Code postal</label> <input
+							type="text" id="codePostal" name="codePostal"
+							th:value="${profileUtilisateur.adresse.codePostal}"
+							class="form-control" placeholder="09000" />
+					</div>
+					<!-- Ville -->
+					<div class="form-group">
+						<label class="form-label" for="ville">Ville</label> <input
+							type="text" id="ville" name="ville" class="form-control"
+							th:value="${profileUtilisateur.adresse.ville}"
+							placeholder="ville" />
+					</div>
+				</div>
+				<div class="row justify-content-center mt-5">
+					<div class="col-12 col-lg-5">
+						<!-- Submit button -->
+						<button type="submit" id="btnEnregistrer"
+							class="btn btn-primary w-100">Enregistrer l'article</button>
+					</div>
+					<div class="col-12 col-lg-5">
+						<button type="reset" class="btn btn-secondary w-100">Annuler</button>
+					</div>
+				</div>
+		</form>
+
+
+	</main>
+	<div th:replace="includes/template.html :: footer"></div>
+
+	<script
+		src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.0/jquery.validate.min.js"></script>
+		
+</body>
+</html>
