@@ -38,19 +38,20 @@ public class UtilisateurController {
 		Utilisateur sessionIdUtilisateur = utilisateurRepository.seConnecter(loginOrEmail, motDePasse);
 		if (sessionIdUtilisateur == null) {
 			request.setAttribute("messageErreurConnexion", "Identifiant ou mot de passe incorrect");
-			return "/pages/utilisateur/connexion";
+			return "redirect:/connexion";
 		}
 		Map<String, String> sessionUtilisateurMap = new HashMap<String, String>();
 		sessionUtilisateurMap.put("id", String.valueOf(sessionIdUtilisateur.getId()));
 		sessionUtilisateurMap.put("isAdministrateur", String.valueOf(sessionIdUtilisateur.getIsAdministrateur()));
 
 		request.getSession().setAttribute("sessionUtilisateurMap", sessionUtilisateurMap);
-		return "/pages/index";
+		return "redirect:/";
 	}
 
 	// -----------------------------------------------------------------------------------------------------
 	@GetMapping("/inscription")
 	public String inscription() {
+		
 		return "pages/utilisateur/inscription";
 	}
 
@@ -90,7 +91,7 @@ public class UtilisateurController {
 			return "pages/utilisateur/connexion";
 		}
 
-		return "redirect:/home";
+		return "redirect:/";
 
 	}
 

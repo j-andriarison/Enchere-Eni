@@ -40,12 +40,20 @@ public class PagesController
 	
 	@RequestMapping(value = { "/" })
 	public String listeArticle(HttpServletRequest request,
-			@PathVariable(value = "userId", required = false) Long idUtilisateurAVisualiser) {
+			@PathVariable(value = "userId", required = false) Long idUtilisateurAVisualiser) throws Exception {
 		
 		
 		// Recuperation de la liste des articles par utilisateur donnee
 		
-		Iterable<Article> listeArticle = articleRepository.findAll();
+		Iterable<Article> listeArticle = null;
+		try {
+			listeArticle = articleRepository.findAll();
+			
+		} catch (Exception e) {
+
+		      return "/pages/index";
+		}
+		
 		request.setAttribute("listeArticle", listeArticle);
 		
 		//System.out.println(listeArticle);

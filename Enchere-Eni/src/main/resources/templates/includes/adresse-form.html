@@ -1,0 +1,23 @@
+<section>
+<!-- Rue input -->
+					<div class="form-group">
+						<label class="form-label" for="rue">Rue</label> <input type="text"
+							id="rue" name="rue" class="form-control"
+							th:value="${profileUtilisateur.adresse.rue}"
+							placeholder="numero et nom de la rue" />
+					</div>
+					<!-- Code Postal input -->
+					<div class="form-group">
+						<label class="form-label" for="codePostal">Code postal</label> <input
+							type="text" id="codePostal" name="codePostal"
+							th:value="${profileUtilisateur.adresse.codePostal}"
+							class="form-control" placeholder="09000" />
+					</div>
+					<!-- Ville -->
+					<div class="form-group">
+						<label class="form-label" for="ville">Ville</label> <input
+							type="text" id="ville" name="ville" class="form-control"
+							th:value="${profileUtilisateur.adresse.ville}"
+							placeholder="ville" />
+					</div>
+</section>

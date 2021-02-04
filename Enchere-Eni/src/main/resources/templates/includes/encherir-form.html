@@ -1,0 +1,20 @@
+<section>
+	<form class="row g-3" th:action="@{/encherir}" method="post"
+			th:object="${enchere}" id="encherir">
+		<div class="col-auto">
+			<label for="staticEmail2">Ma
+				proposition <i class='fab fa-btc'></i></label> <input type="hidden" readonly
+				class="form-control-plaintext" id="article" name="article" th:value="${detailArticle.id}">
+				<input type="hidden" readonly
+				class="form-control-plaintext" id="encherit" name="utilisateur" th:value="${session.sessionUtilisateurMap.id}">
+		</div>
+		<div class="col-auto">
+			<input type="number" class="form-control" id="montantEnchere" name="montantEnchere"
+				placeholder="200  ">
+		</div>
+		<div class="col-auto">
+			<button type="submit" class="btn btn-primary mb-3">Encherir</button>
+		</div>
+								
+</form>
+</section>	

@@ -20,11 +20,12 @@
 						<div class="col-6 gallery">
 							<img class="img-fluid img-thumbnail img-detail"
 								th:src="*{'/uploads/' + fichierImage[0].nomFichier}" alt="...">
-							<br>
-
-							<a th:each="image : *{fichierImage}" th:data-caption="${image.nomFichier}" th:href="${'/uploads/' + image.nomFichier}">
-								<img class="img-fluid img-thumbnail img-mini"
-									th:src="${'/uploads/' + image.nomFichier}" th:alt="${image.nomFichier}"></a>
+							<br> <a th:each="image : *{fichierImage}"
+								th:data-caption="${image.nomFichier}"
+								th:href="${'/uploads/' + image.nomFichier}"> <img
+								class="img-fluid img-thumbnail img-mini"
+								th:src="${'/uploads/' + image.nomFichier}"
+								th:alt="${image.nomFichier}"></a>
 
 						</div>
 						<div class="col-6">
@@ -42,36 +43,48 @@
 								</div>
 
 								<p class="card-text">
-									<b>Categorie:</b> <span th:text="*{categorie.titre}">Nom de la categorie</span>
+									<b>Categorie:</b> <span th:text="*{categorie.titre}">Nom
+										de la categorie</span>
 								</p>
 								<p class="card-text">
 									<b>Meilleur offre:</b> <span>Meilleur offre</span>
 								</p>
 								<p class="card-text">
-									<b>Mise a prix:</b> <span th:text="*{prixInitial}">Valeur
-										du prix</span> €
+									<b>Mise a prix:</b> <span
+										th:text="*{#lists.isEmpty(listEnchere)? prixInitial : listEnchere[#lists.size(listEnchere)-1].montantEnchere}">Valeur
+										du prix</span> <i class="fab fa-btc"></i>
 								</p>
 								<p class="card-text">
-									<b>Retrait:</b> <span
-										th:text="*{utilisateur.adresse.rue+', '+utilisateur.adresse.codePostal+', '+utilisateur.adresse.ville}">Fin
+									<b>Retrait:</b><i class="fas fa-map-marker-alt"></i> <span
+										th:text="*{lieuRetrait.rue+', '+lieuRetrait.codePostal+', '+lieuRetrait.ville}">Fin
 										de l'enchere</span>
 								</p>
 								<p class="card-text">
-									Date fin de l'enchere: <span
+									<b>Date fin de l'enchere:</b> <span
 										th:text="*{#temporals.format(dateFinEncheres, 'yyyy-MM-dd HH:mm')}">Fin
 										de l'enchere</span>
 								</p>
 								<p class="card-text">
-									Date fin de l'enchere: <span
-										th:text="*{#temporals.format(dateFinEncheres, 'yyyy-MM-dd HH:mm')}">Fin
-										de l'enchere</span>
+									<b>Vendeur: </b> <a
+										th:href="*{'/article/'+utilisateur.pseudo+'-ventes/'+utilisateur.id}"
+										th:text="*{utilisateur.pseudo}">Pseudo</span></a> (<a
+										th:href="*{'/utilisateur/profile/'+utilisateur.id}">Voir
+										son profile</span>
+									</a>)
 								</p>
-								<p class="card-text">
-									<b>Vendeur: </b>
-									
-									<a th:href="*{'/article/'+utilisateur.pseudo+'-ventes/'+utilisateur.id}" th:text="*{utilisateur.pseudo}">Pseudo</span></a>
-									(<a th:href="*{'/utilisateur/profile/'+utilisateur.id}">Voir son profile</span></a>)
-								</p>
+
+
+								<div class="p-3 mb-2 bg-danger text-white" th:if="${offreEchoueeUtilisateur}">
+									<span th:text="${offreEchoueeUtilisateur}"></span>
+								</div>
+								<div class="p-3 mb-2 bg-danger text-white" th:if="${offreEchouee}">
+									<span th:text="${offreEchouee}"></span>
+								</div>
+								<div class="p-3 mb-2 bg-success text-white" th:if="${offreReuissie}">
+									<span th:text="${offreReuissie}"></span>
+								</div>
+								<section th:replace="~{includes/encherir-form.html}">Encherir
+								</section>
 							</div>
 						</div>
 					</div>
@@ -81,7 +94,7 @@
 		</div>
 	</main>
 	<div th:replace="includes/template.html :: footer"></div>
-    	<script type="text/javascript" th:src="@{/js/jquery.lightbox.js}" ></script>
+	<script type="text/javascript" th:src="@{/js/jquery.lightbox.js}"></script>
 
 	<script>
   // Initiate Lightbox

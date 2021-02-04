@@ -29,6 +29,7 @@ import fr.cda.eni.encherir.dal.UtilisateurRepository;
 import fr.cda.eni.encherir.model.Article;
 import fr.cda.eni.encherir.model.Categorie;
 import fr.cda.eni.encherir.model.Fichier;
+import fr.cda.eni.encherir.model.Retrait;
 import fr.cda.eni.encherir.model.Utilisateur;
 
 @Controller
@@ -80,15 +81,13 @@ public class ArticleController {
 	public String creerArticle(
 			HttpServletRequest request,
 			@ModelAttribute("article") Article article, 
+			@ModelAttribute("retrait") Retrait retrait, 
 			@RequestParam("images") MultipartFile[] images,
 			@RequestParam("dateDebutEnchere") String dateDebutEncheres,
 			@RequestParam("dateFinEnchere") String dateFinEncheres, 
 			RedirectAttributes redirectAttributes) {
 
-		System.out.println(uploadRootPath);
-
-		System.out.println("uploadRootPath=" + uploadRootPath);
-
+		
 		File uploadRootDir = new File(uploadRootPath);
 		// Create directory if it not exists.
 		if (!uploadRootDir.exists()) {
@@ -119,6 +118,9 @@ public class ArticleController {
 
 		
 		article.setUtilisateur(profileUtilisateur);
+		
+		// Adresse de retrait
+		article.setLieuRetrait(retrait);
 		
 		
 		List<Fichier> listImage = new ArrayList<>();
@@ -166,7 +168,7 @@ public class ArticleController {
 		
 		redirectAttributes.addFlashAttribute("message", "You successfully uploaded all files!");
 
-		return "redirect:/utilisateur/profile";
+		return "redirect:/article/enchere/"+article.getTitre()+"_"+article.getId();
 	}
 
 	@RequestMapping(value = { "/article/mes-ventes", "/article/{userPseudo}-ventes/{userId}" })

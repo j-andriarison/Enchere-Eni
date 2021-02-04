@@ -71,8 +71,8 @@
 										th:text="${article.titre}">Card title</a>
 								</h5>
 								<p class="card-text">
-									Prix initial: <span th:text="${article.prixInitial}">Valeur
-										du prix</span> €
+									Prix initial: 
+									<span th:text="${#lists.isEmpty(article.listEnchere)? article.prixInitial : article.listEnchere[#lists.size(article.listEnchere)-1].montantEnchere} ">Valeur du prix</span> €
 								</p>
 								<p class="card-text">
 									Date fin de l'enchere: <span

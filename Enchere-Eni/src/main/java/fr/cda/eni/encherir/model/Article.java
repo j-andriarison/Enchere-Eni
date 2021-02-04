@@ -12,9 +12,11 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -51,14 +53,21 @@ public class Article {
 			mappedBy = "article",
 			cascade = CascadeType.ALL, 
 			orphanRemoval = true)
-	private List<Fichier> fichierImage = new ArrayList<>(); ;
+	private List<Fichier> fichierImage = new ArrayList<>();
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Categorie categorie;
 	
+	@OneToMany(
+			mappedBy = "article",
+			cascade = CascadeType.ALL, 
+			orphanRemoval = true)
+	private List<Enchere> listEnchere = new ArrayList<>();
 	
+
+	@OneToOne( optional = false, orphanRemoval = true, fetch = FetchType.LAZY, cascade = CascadeType.ALL )
 	
-	
+	private Retrait lieuRetrait;
 	
 	/**
 	 * Constructor sans parametre
@@ -86,6 +95,35 @@ public class Article {
 		this.prixInitial = prixInitial;
 		this.prixVente = prixVente;
 		this.categorie = categorie;
+	}
+
+	/**
+	 * @param utilisateur
+	 * @param titre
+	 * @param description
+	 * @param dateDebutEncheres
+	 * @param dateFinEncheres
+	 * @param prixInitial
+	 * @param prixVente
+	 * @param fichierImage
+	 * @param categorie
+	 * @param listEnchere
+	 * @param lieuRetrait
+	 */
+	public Article(Utilisateur utilisateur, String titre, String description, LocalDateTime dateDebutEncheres,
+			LocalDateTime dateFinEncheres, double prixInitial, double prixVente, List<Fichier> fichierImage,
+			Categorie categorie, List<Enchere> listEnchere, Retrait lieuRetrait) {
+		this.utilisateur = utilisateur;
+		this.titre = titre;
+		this.description = description;
+		this.dateDebutEncheres = dateDebutEncheres;
+		this.dateFinEncheres = dateFinEncheres;
+		this.prixInitial = prixInitial;
+		this.prixVente = prixVente;
+		this.fichierImage = fichierImage;
+		this.categorie = categorie;
+		this.listEnchere = listEnchere;
+		this.lieuRetrait = lieuRetrait;
 	}
 
 	/**
@@ -239,6 +277,34 @@ public class Article {
         if (!(o instanceof Article )) return false;
         return id != null && id.equals(((Article) o).getId());
     }
+
+	/**
+	 * @return the listEnchere
+	 */
+	public List<Enchere> getListEnchere() {
+		return listEnchere;
+	}
+
+	/**
+	 * @param listEnchere the listEnchere to set
+	 */
+	public void setListEnchere(List<Enchere> listEnchere) {
+		this.listEnchere = listEnchere;
+	}
+
+	/**
+	 * @return the lieuRetrait
+	 */
+	public Retrait getLieuRetrait() {
+		return lieuRetrait;
+	}
+
+	/**
+	 * @param lieuRetrait the lieuRetrait to set
+	 */
+	public void setLieuRetrait(Retrait lieuRetrait) {
+		this.lieuRetrait = lieuRetrait;
+	}
 
 
 }

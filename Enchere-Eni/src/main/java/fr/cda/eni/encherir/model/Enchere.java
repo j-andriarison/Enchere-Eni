@@ -14,7 +14,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "echere")
+@Table(name = "enchere")
 public class Enchere {
 
 	@Id
@@ -32,9 +32,7 @@ public class Enchere {
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Article article;
 	
-	@OneToOne( optional = false, orphanRemoval = true, fetch = FetchType.LAZY, cascade = CascadeType.ALL )
-	@JoinColumn(name = "retrait_id")
-	private Retrait lieuRetrait;
+	
 	/**
 	 * Constructor sans parametre
 	 */

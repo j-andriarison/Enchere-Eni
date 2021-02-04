@@ -44,7 +44,7 @@ footer (Copyright...)
 		<!-- Fixed navbar -->
 		<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
 			<div class="container-fluid">
-				<a class="navbar-brand" href="/home">Eni Encheres</a>
+				<a class="navbar-brand" href="/">Eni Encheres</a>
 
 				<button class="navbar-toggler" type="button"
 					data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
@@ -75,14 +75,6 @@ footer (Copyright...)
 			</div>
 		</nav>
 	</header>
-
-
-	<footer th:fragment="footer"
-		class="footer mt-auto py-3 bg-light d-none d-sm-block">
-		<!--  footer fragment -->
-		<div class="container text-center">
-			<span class="text-muted ">Copyright &copy; 2021 👨🏾 👨🏾 </span>
-		</div>
-	</footer>
+	<footer th:replace="~{includes/footer.html}">Footer	</footer>
 </body>
 </html>
